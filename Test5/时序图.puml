@@ -1,0 +1,21 @@
+@startuml
+title 员工入职及分配相关操作时序图
+
+actor 人力资源部门 as HR
+participant 员工 as Employee
+participant 部门 as Department
+participant 职位 as Position
+
+HR -> Employee: 发送入职通知
+HR -> Department: 申请添加新员工
+Department -> Department: 验证是否有空余岗位名额
+Department -> HR: 反馈岗位名额情况（有空余/无空余）
+HR -> Employee: 根据反馈通知员工能否入职（若有岗位名额）
+Employee -> Department: 入职报到
+Department -> Department: 将员工添加到所属员工列表
+Department -> Position: 申请为员工分配职位
+Position -> Position: 查看合适职位是否有空缺
+Position -> Department: 反馈职位空缺情况（有/无）
+Department -> Employee: 根据反馈通知员工职位分配情况
+
+@enduml

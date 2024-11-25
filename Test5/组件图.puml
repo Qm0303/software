@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+package "公司人员管理系统" {
+    component "员工基本信息数据库" as DB1
+    component "考勤数据库" as DB2
+    component "薪资数据库" as DB3
+    component "用户界面" as UI
+    component "员工信息管理模块" as BL1
+    component "考勤管理模块" as BL2
+    component "薪资核算模块" as BL3
+}
+
+UI --> BL1 : 员工信息操作请求
+UI --> BL2 : 考勤相关操作请求
+UI --> BL3 : 薪资相关操作请求
+
+BL1 --> DB1 : 读写基本信息
+BL2 --> DB2 : 读写考勤数据
+BL2 --> BL1 : 获取员工信息
+BL3 --> DB3 : 读写薪资数据
+BL3 --> BL1 : 获取员工信息
+BL3 --> BL2 : 获取考勤数据
+
+@enduml

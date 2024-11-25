@@ -1,0 +1,34 @@
+@startuml
+actor "员工" as employee
+actor "部门主管" as department_manager
+actor "人力资源专员" as hr_specialist
+actor "系统管理员" as system_admin
+
+employee -> "人员管理系统" : 登录系统
+employee -> "人员管理系统" : 填写请假申请信息
+employee -> "人员管理系统" : 提交请假申请
+"人员管理系统" -> department_manager : 推送请假申请
+department_manager -> "人员管理系统" : 查看申请详情
+department_manager -> "人员管理系统" : 审批申请（批准/驳回）
+"人员管理系统" -> employee : 通知请假申请审批结果
+
+employee -> "人员管理系统" : 编辑个人信息
+employee -> "人员管理系统" : 提交信息更新请求
+"人员管理系统" -> hr_specialist : 推送信息更新请求
+hr_specialist -> "人员管理系统" : 审核更新内容
+hr_specialist -> "人员管理系统" : 根据审核情况完成信息更新
+
+system_admin -> "人员管理系统" : 登录系统
+system_admin -> "人员管理系统" : 选择需设置权限的人员
+system_admin -> "人员管理系统" : 根据情况调整权限内容
+"人员管理系统" -> system_admin : 确认权限设置成功
+
+employee -> "人员管理系统" : 查看绩效评估结果
+"人员管理系统" -> employee : 显示绩效评估详情
+
+employee -> "人员管理系统" : 报名参加培训
+"人员管理系统" -> hr_specialist : 推送培训报名信息
+hr_specialist -> "人员管理系统" : 审核报名情况
+hr_specialist -> "人员管理系统" : 根据审核情况确认报名是否成功
+"人员管理系统" -> employee : 通知培训报名结果
+@enduml

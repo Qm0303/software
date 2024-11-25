@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+actor "HR（人力资源专员）" as HR
+actor "普通员工" as Employee
+actor "部门经理" as Manager
+
+rectangle "公司人员管理系统" {
+    usecase "员工信息录入" as UseCase1
+    usecase "薪资核算与发放" as UseCase2
+    usecase "考勤管理" as UseCase3
+    usecase "请假申请" as UseCase4
+    usecase "绩效评估" as UseCase5
+    usecase "部门人员调配" as UseCase6
+    usecase "社保公积金管理" as UseCase7
+    usecase "培训报名" as UseCase8
+}
+
+HR --> UseCase1
+HR --> UseCase2
+HR --> UseCase5
+HR --> UseCase7
+
+Employee --> UseCase3
+Employee --> UseCase4
+Employee --> UseCase8
+
+Manager --> UseCase6
+Manager --> UseCase5
+
+UseCase2 <|-- UseCase7 : 包含（薪资核算包含社保公积金核算部分）
+UseCase8 <|.. UseCase5 : 扩展（培训可作为绩效提升手段扩展绩效评估）
+@enduml
